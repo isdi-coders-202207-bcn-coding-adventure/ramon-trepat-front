@@ -1,7 +1,10 @@
+import CounterStyled from "./CounterStyled";
+import "@fontsource/oxanium";
+
 const Counter = () => {
   return (
     <>
-      <ul className="counters">
+      <CounterStyled className="counters">
         <li className="counter">
           <span className="counter__digit">02</span>
           <span className="counter__title">days</span>
@@ -18,7 +21,7 @@ const Counter = () => {
           <span className="counter__digit">09</span>
           <span className="counter__title">seconds</span>
         </li>
-      </ul>
+      </CounterStyled>
     </>
   );
 };
