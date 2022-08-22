@@ -3,9 +3,11 @@ import Counter from "../Counter/Counter";
 import Header from "../Header/Header";
 
 const StyledContainer = styled.div`
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1200px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Layout = (): JSX.Element => {
