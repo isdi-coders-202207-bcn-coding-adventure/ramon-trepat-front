@@ -16,13 +16,13 @@ const CounterStyled = styled.ul`
       background-color: #ffc700;
       border-radius: 10px;
       padding: 20px;
-      margin: 2px 5px;
-      font-size: 20px;
+      margin: 2px 10px;
+      font-size: 40px;
       color: #243342;
     }
 
     &__title {
-      font-size: 12px;
+      font-size: 18px;
       color: #ecf0f1;
     }
   }
