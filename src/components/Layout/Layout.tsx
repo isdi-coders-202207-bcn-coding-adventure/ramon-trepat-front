@@ -11,8 +11,8 @@ const StyledContainer = styled.div`
   justify-content: center;
 `;
 
-const getTimeRemaining = (deathDate: string) => {
-  const total = Date.parse(deathDate) - new Date().getTime();
+const getTimeRemaining = (deathDate: number) => {
+  const total = deathDate - new Date().getTime();
 
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
@@ -29,7 +29,7 @@ const getTimeRemaining = (deathDate: string) => {
 };
 
 interface LayoutProps {
-  deathDate: string;
+  deathDate: number;
 }
 
 const Layout = ({ deathDate }: LayoutProps): JSX.Element => {
