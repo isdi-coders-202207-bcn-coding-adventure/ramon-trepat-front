@@ -11,8 +11,9 @@ const StyledContainer = styled.div`
   justify-content: center;
 `;
 
-const getTimeRemaining = () => {
-  const total = Date.parse("2022-09-16") - new Date().getTime();
+const getTimeRemaining = (deathDate: string) => {
+  const total = Date.parse(deathDate) - new Date().getTime();
+
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
   const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
@@ -27,7 +28,11 @@ const getTimeRemaining = () => {
   };
 };
 
-const Layout = (): JSX.Element => {
+interface LayoutProps {
+  deathDate: string;
+}
+
+const Layout = ({ deathDate }: LayoutProps): JSX.Element => {
   const inicialTime = {
     total: 0,
     days: 0,
@@ -40,9 +45,9 @@ const Layout = (): JSX.Element => {
 
   useEffect(() => {
     setInterval(() => {
-      timeSet(getTimeRemaining);
+      timeSet(getTimeRemaining(deathDate));
     }, 1000);
-  }, []);
+  }, [deathDate]);
 
   return (
     <StyledContainer>
