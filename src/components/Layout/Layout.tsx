@@ -1,39 +1,15 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import getTimeRemaining from "../../utils/getTimeRemaining";
 import Counter from "../Counter/Counter";
 import Header from "../Header/Header";
-
-const StyledContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const getTimeRemaining = (deathDate: Date) => {
-  const total = deathDate.getTime() - new Date().getTime();
-
-  const seconds = Math.floor((total / 1000) % 60);
-  const minutes = Math.floor((total / 1000 / 60) % 60);
-  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-  const days = Math.floor(total / (1000 * 60 * 60 * 24));
-
-  return {
-    total,
-    days,
-    hours,
-    minutes,
-    seconds,
-  };
-};
+import LayoutStyled from "./LayoutStyled";
 
 interface LayoutProps {
   deathDate: Date;
 }
 
 const Layout = ({ deathDate }: LayoutProps): JSX.Element => {
-  const inicialTime = {
+  const initialTime = {
     total: 0,
     days: 0,
     hours: 0,
@@ -41,16 +17,18 @@ const Layout = ({ deathDate }: LayoutProps): JSX.Element => {
     seconds: 0,
   };
 
-  const [time, timeSet] = useState(inicialTime);
+  const [time, timeSet] = useState(initialTime);
 
   useEffect(() => {
+    timeSet(getTimeRemaining(deathDate));
+
     setInterval(() => {
       timeSet(getTimeRemaining(deathDate));
     }, 1000);
   }, [deathDate]);
 
   return (
-    <StyledContainer>
+    <LayoutStyled>
       <Header />
       <Counter
         day={time.days}
@@ -58,7 +36,7 @@ const Layout = ({ deathDate }: LayoutProps): JSX.Element => {
         minutes={time.minutes}
         seconds={time.seconds}
       />
-    </StyledContainer>
+    </LayoutStyled>
   );
 };
 
